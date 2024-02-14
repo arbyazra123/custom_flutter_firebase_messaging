@@ -28,7 +28,12 @@ class FirebaseMessaging extends FirebasePluginPlatform {
       : super(app.name, 'plugins.flutter.io/firebase_messaging');
 
   /// Returns an instance using the default [FirebaseApp].
-  static FirebaseMessaging instance([String name = defaultFirebaseAppName]) {
+  static FirebaseMessaging instance() {
+    FirebaseApp defaultAppInstance = Firebase.app();
+    return FirebaseMessaging._instanceFor(app: defaultAppInstance);
+  }
+
+  static FirebaseMessaging instanceFor([String name = defaultFirebaseAppName]) {
     FirebaseApp defaultAppInstance = Firebase.app(name);
     return FirebaseMessaging._instanceFor(app: defaultAppInstance);
   }
